@@ -13,3 +13,5 @@ app.use("/", htmlRoutes);
 app.listen(PORT, () => {
     console.log(`Listening on Port: ${PORT}`);
 });
+
+app.get('/', (req,res) => res.send(path.join(__dirname, '/public/index.html')));

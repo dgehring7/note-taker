@@ -5,23 +5,14 @@ const fs = require("fs");
 
 
 router.get('/notes', (req, res) => {
-  console.log("got a get request");
+  // console.log("got a get request");
   res.sendFile(path.join(__dirname, '../db/db.json'))
 });
 
-// router.post("/notes", (req, res) => {
-//     noteStore.saveNote(req.body)
-//     .then((note) =>
-//         res.json(note))
-//         .catch((err) => res.status(500).json(err));
-// });
-
 router.post('/notes', (req, res) => {
     const newNote = req.body;
-    
-      // err handle
       // parse data
-      console.log(path.join(__dirname, '../db/db.json'));
+      // console.log(path.join(__dirname, '../db/db.json'));
       const thisNote = fs.readFileSync(path.join(__dirname, '../db/db.json'));
       const notes = JSON.parse(thisNote);
       // add new Note with data.push
@@ -35,10 +26,10 @@ router.post('/notes', (req, res) => {
       });
 
 router.delete("/notes", (req, res) => {
-    noteStore.deleteNote()
-    .then((note) =>
-        res.json(note))
-        .catch((err) => res.status(500).json(err));
+    const words = req.params.body;
+    const letters = parseInt(words);
+    const badNote = fs.readFileSync(path.join(__dirname, '../db/db.json'));
+    const 
 });
 
 module.exports = router;

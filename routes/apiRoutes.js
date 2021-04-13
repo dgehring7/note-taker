@@ -1,12 +1,12 @@
 const router = require("express").Router();
 const noteStore = require("../notesStore");
+const path = require("path");
+const fs = require("fs");
 
-router.get("/notes", (req, res) => {
-    noteStore.readNotes()
-    .then((notes) => {
-        return res.json(notes);
-    })
-    .catch((err) => res.status(500).json(err));
+
+router.get('/notes', (req, res) => {
+  console.log("got a get request");
+  res.sendFile(path.join(__dirname, '../db/db.json'))
 });
 
 // router.post("/notes", (req, res) => {
@@ -16,23 +16,23 @@ router.get("/notes", (req, res) => {
 //         .catch((err) => res.status(500).json(err));
 // });
 
-app.post('/api/notes', (req, res) => {
+router.post('/notes', (req, res) => {
     const newNote = req.body;
-    newNote.id = (notes.length + 1);
-    fs.readFile(db, 'utf8', (err, data) => {
+    
       // err handle
       // parse data
-      const thisNote = fs.readFileSync(path.join(__dirname, 'db/db.json'));
+      console.log(path.join(__dirname, '../db/db.json'));
+      const thisNote = fs.readFileSync(path.join(__dirname, '../db/db.json'));
       const notes = JSON.parse(thisNote);
       // add new Note with data.push
+      // newNote.id = (notes.length + 1);
       notes.push(newNote);
       // stringify data
       const response = JSON.stringify(notes);
-      fs.writeFileSync(path.join(__dirname, '/db/db.json') (err), response);
+      fs.writeFileSync(path.join(__dirname, '../db/db.json'), response);
         // end response, send response
-        res.json(newNote);
-      })
-    })
+        res.json(notes);
+      });
 
 router.delete("/notes", (req, res) => {
     noteStore.deleteNote()

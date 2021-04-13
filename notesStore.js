@@ -40,7 +40,7 @@ saveNote(note) {
         [...notes, newNote]
     )
     .then((updatedNotes) => this.write(updatedNotes))
-    .then(() => newNote);
+    // .then(() => newNote);
 }
 
 deleteNote(id) {

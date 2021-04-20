@@ -26,10 +26,10 @@ router.post('/notes', (req, res) => {
       });
 
 router.delete("/notes", (req, res) => {
-    const words = req.params.body;
-    const letters = parseInt(words);
-    const badNote = fs.readFileSync(path.join(__dirname, '../db/db.json'));
-    const 
+    const words = req.body;
+    // const letters = parseInt(words);
+    fs.readFileSync(path.join(__dirname, '../db/db.json'));
+      res.json(words);
 });
 
 module.exports = router;
